@@ -24,7 +24,7 @@
 DOCUMENTATION = '''
 ---
 module: win_certificate_store
-version_added: "2.1"
+version_added: "2.2"
 short_description: Imports and removes certificates from the local certificate store
 description:
     - Imports and removes certificates from the local certificate store.
@@ -93,4 +93,18 @@ EXAMPLES = '''
     private_key: yes
     state: absent
 
+'''
+
+RETURN = '''
+  # retruns the following json if the certificate was imported
+  {
+    changed: true,
+    thumb_print = '-thumprint-'
+    serial_number: '-serial numer-
+    subject: '-the subject-'
+  }
+  #otherwise just the changed flag
+  {
+    changed: true|false
+  }
 '''
