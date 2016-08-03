@@ -37,7 +37,7 @@ options:
   output_directory:
     description:
       - Specify the folder location to install the package
-    require: true   
+    require: true
   state:
     description:
       - State of the package on the system
@@ -53,7 +53,7 @@ options:
     choices:
       - yes
       - no
-    default: no  
+    default: no
   version:
     description:
       - Specific version of the package to be installed
@@ -72,7 +72,7 @@ options:
     choices:
       - yes
       - no
-    default: no    
+    default: no
   prerelease:
     description:
       - Allows prerelease packages to be installed.
@@ -86,7 +86,7 @@ options:
     choices:
       - yes
       - no
-    default: no	
+    default: no
 author: "Stuart Cullinan (stuart.cullinan@gmail.com)"
 '''
 
