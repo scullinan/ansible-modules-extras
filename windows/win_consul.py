@@ -21,7 +21,7 @@
 # this is a windows documentation stub.  actual code lives in the .ps1
 # file of the same name
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: consul
 short_description: "Add, modify & delete services within a consul cluster."
@@ -43,7 +43,7 @@ description:
    stage change management will be added.
  - "See http://consul.io for more details."
 
-version_added: "2.1"
+version_added: "2.2"
 author: "Stuart Cullinan (stuart.cullinan@gmail.com)"
 options:
     state:
@@ -173,42 +173,94 @@ options:
 """
 
 EXAMPLES = '''
-  - name: register foo service with the local consul agent
-    win_consul:
-      service_name: foo
-      service_port: 80
-  - name: register foo service with curl check
-    win_consul:
-      service_name: foo
-      service_port: 80
-      script: "curl http://localhost"
-      interval: 60s
-  - name: register foo with an http check
-    win_consul:
-      name: foo
-      service_port: 80
-      interval: 60s
-      http: /status
-  - name: register foo with address
-    win_consul:
-      service_name: foo
-      service_port: 80
-      service_address: 127.0.0.1
-  - name: register foo with some service tags
-    win_consul:
-      service_name: foo
-      service_port: 80
-      tags:
-        - prod
-        - webservers
-  - name: remove foo service
-    win_consul:
-      service_name: foo
-      state: absent
-  - name: create a node level check to test disk usage
-    win_consul:
-      check_name: Disk usage
-      check_id: disk_usage
-      script: "c:\temp\disk_usage.ps1"
-      interval: 5m
+    - name: register foo service with the local consul agent
+      win_consul:
+        service_name: foo
+        service_port: 80
+
+    - name: register foo service with curl check
+      win_consul:
+        service_name: foo
+        service_port: 80
+        script: "curl http://localhost"
+        interval: 60s
+
+    - name: register foo with an http check
+      win_consul:
+        name: foo
+        service_port: 80
+        interval: 60s
+        http: /status
+
+    - name: register foo with address
+      win_consul:
+        service_name: foo
+        service_port: 80
+        service_address: 127.0.0.1
+
+    - name: register foo with some service tags
+      win_consul:
+        service_name: foo
+        service_port: 80
+        tags:
+          - prod
+          - webservers
+
+    - name: remove foo service
+      win_consul:
+        service_name: foo
+        state: absent
+
+    - name: create a node level check to test disk usage
+      win_consul:
+        check_name: Disk usage
+        check_id: disk_usage
+        script: "c:/temp/disk_usage.ps1"
+        interval: 5m
+'''
+
+RETURN = '''
+state:
+  description: The service details after a successful service registration.
+  returned: only on successful registration
+  type: dict
+  sample: {
+      "changed": true,
+      "service_id": "foo",
+      "service_name": "foo",
+      "service_port": 80,
+      "checks": [],
+      "tags": "webservers"
+    }
+state:
+  description: The service details after a successful service removal (unregister).
+  returned: only on successful service removal
+  type: dict
+  sample: {
+      "changed": true,
+      "id": "foo"
+    }
+state:
+  description: The check details after a successful check registration.
+  returned: only on successful check registration
+  type: dict
+  sample: {
+      "changed": true,
+      "check_id": "foo-health",
+      "check_name": "foo-health",
+      "script": null,
+      "interval": 5,
+      "ttl": null,
+      "tcp": null,
+      "http": "http://localhost:80/health",
+      "timeout": 25,
+    }
+state:
+  description: The check details after a successful check removal.
+  returned: only on successful check removal
+  type: dict
+  sample: {
+      "changed": true,
+      "id": "foo-health"
+    }
 '''
