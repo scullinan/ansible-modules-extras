@@ -61,7 +61,7 @@ options:
       - present
       - absent
     default: present
-  	
+
 author: "Stuart Cullinan (stuart.cullinan@gmail.com)"
 '''
 
