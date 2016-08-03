@@ -24,11 +24,11 @@
 DOCUMENTATION = '''
 ---
 module: win_nuget
-version_added: "2.1"
+version_added: "2.2"
 short_description: Installs packages using nuget
 description:
     - Installs packages using Nuget (https://www.nuget.org/). If Nuget is missing from the system, this module will NOT install it. To install
-	nuget, use the win_chocolatey module and install 'Nuget.Commandline' first.
+      nuget, use the win_chocolatey module and install 'Nuget.Commandline' first.
 options:
   name:
     description:
@@ -94,20 +94,33 @@ EXAMPLES = '''
   # Install EntityFramework
   win_nuget:
     name: EntityFramework
-	location: c:/lib
+    location: c:/lib
   # Install EntityFramework 6.1.2
   win_nuget:
     name: EntityFramework
     version: 6.1.2
-	location: c:/lib
+    location: c:/lib
   # Uninstall EntityFramework
   win_nuget:
     name: EntityFramework
     state: absent
-	location: c:/lib
+    location: c:/lib
   # Install EntityFramework from specified repository
   win_nuget:
     name: EntityFramework
-	location: c:/lib
+    location: c:/lib
     source: https://someserver/api/v2/
+'''
+
+RETURN = '''
+state:
+  description: The package installation details after successful install.
+  returned: only on successful installation
+  type: dict
+  sample: {
+      "changed": true,
+      "package_path": "c:\\root\\packages\\somepackage-1.2.3",
+      "package_id": "somepackage",
+      "package_version": "1.2.3"
+    }
 '''
