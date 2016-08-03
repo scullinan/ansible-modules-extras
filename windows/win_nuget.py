@@ -119,7 +119,7 @@ state:
   type: dict
   sample: {
       "changed": true,
-      "package_path": "c:\\root\\packages\\somepackage-1.2.3",
+      "package_path": "c:/packages/somepackage-1.2.3",
       "package_id": "somepackage",
       "package_version": "1.2.3"
     }
