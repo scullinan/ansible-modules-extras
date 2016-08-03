@@ -96,15 +96,14 @@ EXAMPLES = '''
 '''
 
 RETURN = '''
-  # retruns the following json if the certificate was imported
-  {
-    changed: true,
-    thumb_print = '-thumprint-'
-    serial_number: '-serial numer-
-    subject: '-the subject-'
-  }
-  #otherwise just the changed flag
-  {
-    changed: true|false
-  }
+state:
+  description: The certificate details after import.
+  returned: only on successful import
+  type: dict
+  sample: {
+      "changed": true,
+      "thumb_print": "",
+      "serial_number": "",
+      "subject": ""
+    }
 '''
