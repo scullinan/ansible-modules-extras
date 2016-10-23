@@ -43,7 +43,7 @@ description:
    stage change management will be added.
  - "See http://consul.io for more details."
 
-version_added: "2.2"
+version_added: "2.3"
 author: "Stuart Cullinan (stuart.cullinan@gmail.com)"
 options:
     state:
